@@ -1,0 +1,42 @@
+spring:
+  config:
+    activate:
+      on-profile: qa
+cityclub:
+  consumer:
+    key: ${cityclub-consumer-key}
+    secret: ${cityclub-consumer-secret}
+  site: ${cityclub-site}
+  url:
+    domain: ${cityclub-url-domain}
+    oauth:  ${cityclub-url-oauth}
+    ouath-bsmanager: ${cityclub-url-oauth}?client_id=${cityclub-consumer-key}
+    customer-data: ${cityclub-url-domain}/s/${cityclub.site}/dw/shop/${cityclub-version-ocapi}/customers
+    customer-reset-password: ${cityclub-url-domain}/s/${cityclub-site}/dw/shop/${cityclub-version-ocapi}/customers/password_reset
+    customer-baskets: ${cityclub-url-domain}/s/${cityclub-site}/dw/shop/${cityclub-version-ocapi}/customers
+    basket: ${cityclub-url-domain}/s/${cityclub-site}/dw/shop/${cityclub-version-ocapi}/baskets
+    order-search: ${cityclub-url-domain}/s/${cityclub.site}/dw/shop/${cityclub-version-ocapi}/order_search
+    products: ${cityclub-url-domain}/city-club/products/v1/products
+    basket-products-info: ${cityclub.url.domain}/s/${cityclub.site}/dw/shop/${cityclub-version-ocapi}/products
+    customer-address: ${cityclub-url-domain-middleware}/city-club/customer-address/v1/customers
+    split-shipment: ${cityclub-url-domain-middleware}/city-club/mercurio-utils/v1/managment-order/split-shipments
+    membership: http://membresiascityclubqa.azurewebsites.net/api/CityClubMembresias
+    custompreferences: ${cityclub-url-domain-middleware}/city-club/custom-preferences/v1/site_preferences/preference_groups
+    findproducts: ${cityclub-url-domain-middleware}/city-club/products/v1/products
+    url-terminos: https://www.cityclub.com.mx/condiciones-de-las-promociones.html
+    promotion-campaign-assignment-search: ${cityclub-url-domain-middleware}/city-club/coupons/v1/coupons/promotion_campaign_assignment_search
+    comercial-structure: ${cityclub-url-domain-middleware}/city-club/commercial-structure/v1
+    customer-data-sites: ${cityclub.url.domain}/s/Sites-Site/dw/data/${cityclub-version-ocapi}/customer_lists/CityClub/customers
+    customer-termination: https://aptgtwqa.soriana.com/tecdig/lealtad/membresias/v1/UnLinkMember
+  config:
+    instance_type: sandbox
+server:
+   port: 8080
+eureka:
+  client:
+    enabled: false
+elasticsearch:
+  cloud:
+    base-url: ${elastic-base-url}
+    index: ${elastic-index}
+    apikey: ${elastic-apikey}

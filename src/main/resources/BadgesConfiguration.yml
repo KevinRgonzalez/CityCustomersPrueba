@@ -1,0 +1,105 @@
+codigobadge:
+  - promotionId: "c"
+    code: "c:3|2"
+    displayName: "#var1 x #var2"
+    displayTitle: "#var1 x #var2"
+    displayColor: "#e3281a"
+    groupPosition: 2
+
+  - promotionId: "ce"
+    displayName: "#var1 x #var2 Exclusivo en línea"
+    displayTitle: "#var1 x #var2 Exclusivo en línea"
+    displayColor: "#FF8F00"
+    code: "ce:3|2"
+    groupPosition: 1
+
+  - promotionId: "cbe"
+    displayName: "Compra #var1 y llévate #var2 de ellos al #var3% Exclusivo en línea"
+    displayTitle: "Compra #var1 y llévate #var2 de ellos al #var3% Exclusivo en línea"
+    displayColor: "#FF8F00"
+    code: "cbe:10|20|30"
+    groupPosition: 1
+
+  - promotionId: "d"
+    displayName: "#var1%"
+    displayTitle: "#var1%"
+    displayColor: "#e3281a"
+    groupPosition: 2
+    code: "d:10"
+
+  - promotionId: "e"
+    displayName: "Bonifica #var1% en Dinero electrónico"
+    displayTitle: "Bonifica #var1% en Dinero electrónico"
+    displayColor: "#e3281a"
+    code: "e:10"
+    groupPosition: 4
+
+  - promotionId: "ee"
+    displayName: "Bonifica #var1% en Dinero electrónico"
+    displayTitle: "Bonifica #var1% en Dinero electrónico"
+    displayColor: "#FF8F00"
+    code: "ee:10"
+    groupPosition: 4
+
+  - promotionId: "i.02"
+    displayName: "Combo"
+    displayTitle: "Combo"
+    displayColor: "#e3281a"
+    groupPosition: 2
+    code: "i:02"
+
+  - promotionId: "l2"
+    displayName: "Hasta #var1 MSI"
+    displayTitle: "Hasta #var1 MSI"
+    displayColor: "#e3281a"
+    code: "l2:10"
+    groupPosition: 3
+
+  - promotionId: "le2"
+    displayName: "Hasta #var1 MSI Exclusivo en línea"
+    displayTitle: "Hasta #var1 MSI Exclusivo en línea"
+    displayColor: "#FF8F00"
+    code: "le2:10"
+    groupPosition: 3
+
+  - promotionId: "m"
+    displayName: "#var1 x $#var2.00"
+    displayTitle: "#var1 x $#var2.00"
+    displayColor: "#e3281a"
+    code: "m:10|120"
+    groupPosition: 2
+
+  - promotionId: "me"
+    displayName: "#var1 x $#var2.00 Exclusivo en línea"
+    displayTitle: "#var1 x $#var2.00 Exclusivo en línea"
+    displayColor: "#FF8F00"
+    code: "me:10|120"
+    groupPosition: 1
+
+  - promotionId: "cb"
+    displayName: "#var1° al #var2% descuento"
+    displayTitle: "#var1° al #var2% descuento"
+    displayColor: "#e3281a"
+    code: "cb:10|20"
+    groupPosition: 2
+
+  - promotionId: "f"
+    displayName: "Obtén #var1% en dinero electrónico pagando con Falabella"
+    displayTitle: "Obtén #var1% en dinero electrónico pagando con Falabella"
+    displayColor: "#43aa34"
+    code: "f:10"
+    groupPosition: 4
+
+  - promotionId: "di"
+    displayName: "#var1 x #var2"
+    displayTitle: "#var1 x #var2"
+    displayColor: "#1d1e1c"
+    code: "di:10|10"
+    groupPosition: 1
+
+  - promotionId: "cb2"
+    displayName: "Ahorra $#var1 comprando #var2"
+    displayTitle: "Ahorra $#var1 comprando #var2"
+    displayColor: "#e3281a"
+    code: "cb2:10|20"
+    groupPosition: 2

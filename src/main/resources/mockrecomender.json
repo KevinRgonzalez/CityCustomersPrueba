@@ -1,0 +1,21 @@
+{
+    "count": 2,
+    "carrousels": [
+        {
+            "slot": "pdp-x-1",
+            "recommender": "einstein_recommender",
+            "title": "Más vendidos",
+            "description": "",
+            "count": 10,
+            "data": []
+        },
+        {
+            "slot": "pdp-x-2",
+            "recommender": "einstein_recommender",
+            "title": "Más vendidos",
+            "description": "",
+            "count": 10,
+            "data": []
+        }
+    ]
+}

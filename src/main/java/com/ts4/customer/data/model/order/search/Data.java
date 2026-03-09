@@ -1,0 +1,87 @@
+package com.ts4.customer.data.model.order.search;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.ArrayList;
+
+@Getter
+@Setter
+public class Data{
+    private String _type;
+    private double adjusted_merchandize_total_tax;
+    private double adjusted_shipping_total_tax;
+    private BillingAddress billing_address;
+    private String channel_type;
+    private String confirmation_status;
+    private String created_by;
+    private String creation_date;
+    private String currency;
+    private CustomerInfo customer_info;
+    private String customer_name;
+    private String export_status;
+    private ArrayList<GroupedTaxItem> grouped_tax_items;
+    private boolean guest;
+    private String last_modified;
+    private double merchandize_total_tax;
+    private Notes notes;
+    private String order_no;
+    private String order_token;
+    private double order_total;
+    private ArrayList<PaymentInstrument> payment_instruments;
+    private String payment_status;
+    private ArrayList<ProductItem> product_items;
+    private double product_sub_total;
+    private double product_total;
+    private ArrayList<Shipment> shipments;
+    private ArrayList<ShippingItem> shipping_items;
+    private String shipping_status;
+    private double shipping_total;
+    private double shipping_total_tax;
+    private String site_id;
+    private String status;
+    private String taxation;
+    private boolean tax_rounded_at_group;
+    private double tax_total;
+    private boolean c_TermsAndConditions;
+    private double c_additionalPoints;
+    private boolean c_allowReplacement;
+    private String c_basketUUID;
+    private boolean c_bvSentInPPEFeed;
+    private boolean c_changePayMethodFromPayPal;
+    private String c_clickTrackerPPS;
+    private String c_clickTrackerSite;
+    private boolean c_confirmationMailSent;
+    private String c_couponMarketec;
+    private String c_coupon_code;
+    private String c_customPaymentStatus;
+    private String c_discountPlanID;
+    private double c_earnedMoney;
+    private boolean c_exportedPaypalAgreementToPPS;
+    private boolean c_exportedPaypalOrderToPPS;
+    private String c_extensionField;
+    private boolean c_isMultiplePayPalOrder;
+    private boolean c_isPaypalPaymentOrder;
+    private String c_loyaltyPromotions;
+    private String c_membershipID;
+    private boolean c_membershipProcess;
+    private String c_orderStatus;
+    private String c_orderUpdates;
+    private boolean c_paymentProcessorConnectionError;
+    private boolean c_paymentProcessorError;
+    private boolean c_postDiscountProcessed;
+    private boolean c_postProcessed;
+    private String c_qualarooSurveyStatus;
+    private double c_redeemedPoints;
+    private String c_salesChannel;
+    private boolean c_sorianaDonation;
+    private String c_storeID;
+    private String c_typePaymentMethodId;
+    private String c_cardIcon;
+    private String c_clickEventTrackerPPS;
+    private String c_hasCvv;
+    private String c_sorianaPaymentDetails;
+    private String c_sorianaReqPaymentId;
+    private String c_barcode;
+    private String c_paymentProcessorMsg;
+}

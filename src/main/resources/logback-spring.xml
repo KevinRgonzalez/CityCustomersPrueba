@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <springProfile name="dev">
+        <include resource="logback-dev.xml"/>
+    </springProfile>
+    <springProfile name="prod">
+        <include resource="logback-prod.xml"/>
+    </springProfile>
+    <springProfile name="qa">
+        <include resource="logback-qa.xml"/>
+    </springProfile>
+</configuration>

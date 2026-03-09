@@ -1,0 +1,150 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cityclub-customer-service
+  namespace: kube-cityclub-core-app
+spec:
+  selector:
+    matchLabels:
+      app: cityclub-customer-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cityclub-customer-service
+    spec:
+      containers:
+        - name: cityclub-customer-service
+          image: cityclubbedesarrolloregistry.azurecr.io/cityclub-customer-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: 256m
+              memory: 512Mi
+            limits:
+              cpu: 512m
+              memory: 1024Mi
+          env:
+            ###################### Config maps
+            - name: cityclub-url-domain-middleware
+              valueFrom:
+                configMapKeyRef:
+                  name: cityclub-configmap
+                  key: cityclub-url-domain-middleware
+            - name: elastic-base-url
+              valueFrom:
+                configMapKeyRef:
+                  name: cityclub-configmap
+                  key: elastic-base-url
+            - name: elastic-index
+              valueFrom:
+                configMapKeyRef:
+                  name: cityclub-configmap
+                  key: elastic-index
+            - name: elastic-apikey
+              valueFrom:
+                secretKeyRef:
+                  name: cityclub-secret
+                  key: elastic-apikey
+            - name: cityclub-deployment-profile
+              valueFrom:
+                configMapKeyRef:
+                  name: cityclub-configmap
+                  key: cityclub-deployment-profile
+            - name: cityclub-version-ocapi
+              valueFrom:
+                configMapKeyRef:
+                  name: cityclub-configmap
+                  key: cityclub-version-ocapi
+            - name: cityclub-config-instance-type-commerce
+              valueFrom:
+                configMapKeyRef:
+                  name: cityclub-configmap
+                  key: cityclub-config-instance-type-commerce
+            - name: cityclub-url-cibersource-environment
+              valueFrom:
+                configMapKeyRef:
+                  name: cityclub-configmap
+                  key: cityclub-url-cibersource-environment
+            - name: cityclub-url-domain
+              valueFrom:
+                configMapKeyRef:
+                  name: cityclub-configmap
+                  key: cityclub-url-domain
+            - name: cityclub-url-oauth
+              valueFrom:
+                configMapKeyRef:
+                  name: cityclub-configmap
+                  key: cityclub-url-oauth
+            - name: cityclub-site
+              valueFrom:
+                configMapKeyRef:
+                  name: cityclub-configmap
+                  key: cityclub-site
+            ###################### Secrete
+            - name: cityclub-consumer-secret
+              valueFrom:
+                secretKeyRef:
+                  name: cityclub-secret
+                  key: cityclub-consumer-secret
+            - name: cityclub-consumer-key
+              valueFrom:
+                secretKeyRef:
+                  name: cityclub-secret
+                  key: cityclub-consumer-key
+            - name: cityclub-key-algorithm-jasypt
+              valueFrom:
+                secretKeyRef:
+                  name: cityclub-secret
+                  key: cityclub-key-algorithm-jasypt
+            - name: cityclub-algorithm-jasypt
+              valueFrom:
+                secretKeyRef:
+                  name: cityclub-secret
+                  key: cityclub-algorithm-jasypt
+            - name: cityclub-uri-db
+              valueFrom:
+                secretKeyRef:
+                  name: cityclub-secret
+                  key: cityclub-uri-db
+            - name: cityclub-user-db
+              valueFrom:
+                secretKeyRef:
+                  name: cityclub-secret
+                  key: cityclub-user-db
+            - name: cityclub-key-db
+              valueFrom:
+                secretKeyRef:
+                  name: cityclub-secret
+                  key: cityclub-key-db
+      imagePullSecrets:
+        - name: cityclub-docker-acr-secret
+
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: cityclub-customer-service
+  namespace: kube-cityclub-core-app
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: cityclub-customer-service
+  minReplicas: 3
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cityclub-customer-service
+  namespace: kube-cityclub-core-app
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+  selector:
+    app: cityclub-customer-service

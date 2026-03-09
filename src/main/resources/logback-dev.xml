@@ -1,0 +1,31 @@
+<included>
+    <springProperty name="ENV" source="spring.profiles.active" />
+    <springProperty name="ELASTIC_BASE_URL" source="elasticsearch.cloud.base-url" />
+    <springProperty name="ELASTIC_APIKEY" source="elasticsearch.cloud.apikey" />
+    <springProperty name="BASE_INDEX" source="elasticsearch.cloud.index" />
+    <appender name="TRACE_ELASTIC" class="com.ts4.customer.data.utils.Elastic.ElasticHttpAppender">
+        <elasticUrl>https://${ELASTIC_BASE_URL}:443/${BASE_INDEX}${ENV}-customerdatatrazas/_doc/</elasticUrl>
+        <apiKey>${ELASTIC_APIKEY}</apiKey>
+        <includeFullStackTrace>true</includeFullStackTrace>
+        <includeCallerData>true</includeCallerData>
+        <includeOtelTraces>true</includeOtelTraces>
+        <applicationName>customer-service</applicationName>
+        <traceExpirationMillis>300000</traceExpirationMillis>
+    </appender>
+    <appender name="FEIGN_ELASTIC" class="com.ts4.customer.data.utils.Elastic.ElasticHttpAppender">
+        <elasticUrl>https://${ELASTIC_BASE_URL}:443/${BASE_INDEX}${ENV}-customerdatafeign/_doc/</elasticUrl>
+        <apiKey>${ELASTIC_APIKEY}</apiKey>
+        <includeFullStackTrace>true</includeFullStackTrace>
+        <includeCallerData>true</includeCallerData>
+        <includeOtelTraces>true</includeOtelTraces>
+        <applicationName>customer-service</applicationName>
+        <traceExpirationMillis>300000</traceExpirationMillis>
+    </appender>
+
+    <logger name="com.ts4.customer.data.utils.logs.TrazaPrincipal" level="TRACE" additivity="false">
+        <appender-ref ref="TRACE_ELASTIC" />
+    </logger>
+    <logger name="com.ts4.customer.data.utils.logs.FeignResponseInterceptor" level="INFO" additivity="false">
+        <appender-ref ref="FEIGN_ELASTIC" />
+    </logger>
+</included>
