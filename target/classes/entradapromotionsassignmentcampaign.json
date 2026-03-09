@@ -1,0 +1,24 @@
+{
+    "query": {
+        "bool_query": {
+            "must": [
+                {
+                    "term_query": {
+                        "fields": [
+                            "enabled"
+                        ],
+                        "operator": "is",
+                        "values": [
+                            true
+                        ]
+                    }
+                }
+            ]
+        }
+    },
+    "expand": [
+        "campaign",
+        "promotion"
+    ],
+    "select": "(**)"
+}

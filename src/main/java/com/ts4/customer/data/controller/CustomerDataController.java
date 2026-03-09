@@ -5,8 +5,6 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 import com.ts4.customer.data.utils.logs.TrazaPrincipal;
-import io.opentelemetry.api.trace.Span;
-import io.opentelemetry.api.trace.Tracer;
 import jakarta.ws.rs.Path;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +23,7 @@ import com.ts4.customer.data.service.CustomerProductsOrdersService;
 @RestController
 @RequestMapping("/customers")
 public class CustomerDataController {
-	private final Tracer tracer;
 
-	public CustomerDataController(Tracer tracer) {
-		this.tracer = tracer;
-	}
 
 	@Autowired private TrazaPrincipal trazaPrincipal;
 	@Autowired private CustomerDataService customerDataService;
@@ -46,11 +40,11 @@ public class CustomerDataController {
 	public ResponseEntity<?> getTerminosCondiciones(@RequestHeader("Authorization") String authorizationHeader ) {
 		log.info("terminos");
 		try {
-			Span span = tracer.spanBuilder("TRAZA PRINCIPAL").startSpan();
+// Span removido
 			ResponseEntity<?> response = customerDataService.getTerminosCondiciones( authorizationHeader);
 			Map<String,Object> mapParam = new HashMap<>();
 			mapParam.put("Authorization",authorizationHeader);
-			trazaPrincipal.trazaPrincipal(mapParam, response,span);
+			trazaPrincipal.trazaPrincipal(mapParam, response);
 			return response;
 		} catch (Exception e) {
 			throw new DefaultException("Error interno, por favor vuelva a intentar", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -81,13 +75,13 @@ public class CustomerDataController {
 											  @RequestBody Object params) {
 		log.info("registerCustomer");
 		try {
-			Span span = tracer.spanBuilder("TRAZA PRINCIPAL").startSpan();
+// Span removido
 			ResponseEntity<?> response = customerDataService.registerCustomer( params , authorizationHeader,actionCustomer);
 			Map<String,Object> mapParam = new HashMap<>();
 			mapParam.put("Authorization",authorizationHeader);
 			mapParam.put("actionCustomer",actionCustomer);
 			mapParam.put("http.requestPrincipal",new Gson().toJson(params));
-			trazaPrincipal.trazaPrincipal(mapParam, response,span);
+			trazaPrincipal.trazaPrincipal(mapParam, response);
 			return response;
 		} catch (Exception e) {
 			throw new DefaultException("Error interno, por favor vuelva a intentar", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -113,14 +107,14 @@ public class CustomerDataController {
 												@RequestBody(required = false) Object customer ) {
 		log.info("updateCustomerById");
 		try {
-			Span span = tracer.spanBuilder("TRAZA PRINCIPAL").startSpan();
+// Span removido
 			ResponseEntity<?> response = customerDataService.updateCustomerById(  authorizationHeader  , actionCustomer, customer_id, customer );
 			Map<String,Object> mapParam = new HashMap<>();
 			mapParam.put("Authorization",authorizationHeader);
 			mapParam.put("actionCustomer",actionCustomer);
 			mapParam.put("customer_id",customer_id);
 			mapParam.put("http.requestPrincipal",new Gson().toJson(customer));
-			trazaPrincipal.trazaPrincipal(mapParam, response,span);
+			trazaPrincipal.trazaPrincipal(mapParam, response);
 			return response;
 		} catch (Exception e) {
 			throw new DefaultException("Error interno, por favor vuelva a intentar", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -141,13 +135,13 @@ public class CustomerDataController {
 											 @RequestParam Map<String,Object> queryParams ) {
 		log.info("getCustomerById");
 		try {
-			Span span = tracer.spanBuilder("TRAZA PRINCIPAL").startSpan();
+// Span removido
 			ResponseEntity<?> response = customerDataService.getCustomerById( authorizationHeader , customer_id,queryParams);
 			Map<String,Object> mapParam = new HashMap<>();
 			mapParam.put("Authorization",authorizationHeader);
 			mapParam.put("customer_id",customer_id);
 			mapParam.put("http.requestPrincipal",new Gson().toJson(queryParams));
-			trazaPrincipal.trazaPrincipal(mapParam, response,span);
+			trazaPrincipal.trazaPrincipal(mapParam, response);
 			return response;
 		} catch (Exception e) {
 			throw new DefaultException("Error interno, por favor vuelva a intentar", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -165,12 +159,12 @@ public class CustomerDataController {
 	public ResponseEntity<?> setPasswordReset(@RequestBody Object params , @RequestParam Map<String,Object> queryParams) {
 		log.info("password reset");
 		try {
-			Span span = tracer.spanBuilder("TRAZA PRINCIPAL").startSpan();
+// Span removido
 			ResponseEntity<?> response = customerDataService.setPasswordReset( params ,queryParams );
 			Map<String,Object> mapParam = new HashMap<>();
 			mapParam.put("params",queryParams);
 			mapParam.put("http.requestPrincipal",new Gson().toJson(params));
-			trazaPrincipal.trazaPrincipal(mapParam, response,span);
+			trazaPrincipal.trazaPrincipal(mapParam, response);
 			return response;
 		} catch (Exception e) {
 			throw new DefaultException("Error interno, por favor vuelva a intentar", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -195,7 +189,7 @@ public class CustomerDataController {
 			@RequestHeader(value="fullData",required =false ) Boolean fullData,
 			@PathVariable("customer_id") String customer_id) {
 		try {
-			Span span = tracer.spanBuilder("TRAZA PRINCIPAL").startSpan();
+// Span removido
 			ResponseEntity<?> response = customerGetBasketsService.getBasketsCustomer(authorization , actionBasket , sfccAction,customer_id );
 			Map<String,Object> mapParam = new HashMap<>();
 			mapParam.put("Authorization",authorization);
@@ -203,7 +197,7 @@ public class CustomerDataController {
 			mapParam.put("sfccAction",sfccAction);
 			mapParam.put("fullData",fullData);
 			mapParam.put("customer_id",customer_id);
-			trazaPrincipal.trazaPrincipal(mapParam, response,span);
+			trazaPrincipal.trazaPrincipal(mapParam, response);
 			return response;
 		} catch (Exception e) {
 			throw new DefaultException("Error interno, por favor vuelva a intentar", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -230,7 +224,7 @@ public class CustomerDataController {
 			@RequestHeader(value="fullData",required =false ) Boolean fullData,
 	        @PathVariable("customer_id") String customer_id) {
 	    try {
-			Span span = tracer.spanBuilder("TRAZA PRINCIPAL").startSpan();
+// Span removido
 			ResponseEntity<?> response = customerGetBasketsService.getBasketsCustomerv2(authorization , actionBasket, sfccAction,fullData,customer_id,headerIsCuponesDetails );
 			Map<String,Object> mapParam = new HashMap<>();
 			mapParam.put("Authorization",authorization);
@@ -239,7 +233,7 @@ public class CustomerDataController {
 			mapParam.put("headerIsCuponesDetails",headerIsCuponesDetails);
 			mapParam.put("fullData",fullData);
 			mapParam.put("customer_id",customer_id);
-			trazaPrincipal.trazaPrincipal(mapParam, response,span);
+			trazaPrincipal.trazaPrincipal(mapParam, response);
 			return response;
 	    } catch (Exception e) {
 	        throw new DefaultException("Error interno, por favor vuelva a intentar", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -262,14 +256,14 @@ public class CustomerDataController {
 	        @PathVariable("customer_id") String customer_id,
 	        @RequestBody ProductsOrderReq productsOrderReq) {
 	    try {
-			Span span = tracer.spanBuilder("TRAZA PRINCIPAL").startSpan();
+// Span removido
 			ResponseEntity<?> response = customerProductsOrdersService.getProductsOrders(authorization , customer_id , productsOrderReq ,homeReq);
 			Map<String,Object> mapParam = new HashMap<>();
 			mapParam.put("Authorization",authorization);
 			mapParam.put("homeReq",homeReq);
 			mapParam.put("customer_id",customer_id);
 			mapParam.put("http.requestPrincipal",new Gson().toJson(productsOrderReq));
-			trazaPrincipal.trazaPrincipal(mapParam, response,span);
+			trazaPrincipal.trazaPrincipal(mapParam, response);
 			return response;
 	    } catch (Exception e) {
 	        throw new DefaultException("Error interno, por favor vuelva a intentar", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -301,14 +295,14 @@ public class CustomerDataController {
 											   @RequestParam Map<String,Object> queryParams ,
 											   @RequestHeader(value="sfcc-cupones",required =false ) Boolean headerIsCuponesDetails) {
 		try {
-			Span span = tracer.spanBuilder("TRAZA PRINCIPAL").startSpan();
+// Span removido
 			ResponseEntity<?> response = customerGetBasketsService.getOrdersCustomer(authorization,customer_id,queryParams,headerIsCuponesDetails);
 			Map<String,Object> mapParam = new HashMap<>();
 			mapParam.put("Authorization",authorization);
 			mapParam.put("customer_id",customer_id);
 			mapParam.put("queryParams",queryParams);
 			mapParam.put("headerIsCuponesDetails",headerIsCuponesDetails);
-			trazaPrincipal.trazaPrincipal(mapParam, response,span);
+			trazaPrincipal.trazaPrincipal(mapParam, response);
 			return response;
 		} catch (Exception e) {
 			throw new DefaultException("Error interno, por favor vuelva a intentar", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -319,13 +313,13 @@ public class CustomerDataController {
 	public ResponseEntity<?> deletCustomer(@RequestHeader("Authorization") String authorization, @PathVariable("customer_id") String customer_id)
 	{
 		try {
-			Span span = tracer.spanBuilder("TRAZA PRINCIPAL").startSpan();
+// Span removido
 			ResponseEntity<?> response = customerDataService.deleteCustomer(authorization,customer_id);
 			Map<String,Object> mapParam = new HashMap<>();
 			mapParam.put("Authorization",authorization);
 			mapParam.put("customer_id",customer_id);
 			mapParam.put("headerIsCuponesDetails",customer_id);
-			trazaPrincipal.trazaPrincipal(mapParam, response,span);
+			trazaPrincipal.trazaPrincipal(mapParam, response);
 			return response;
 		} catch (Exception e) {
 			throw new DefaultException("Error interno, por favor vuelva a intentar", HttpStatus.INTERNAL_SERVER_ERROR);

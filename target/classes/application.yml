@@ -1,0 +1,38 @@
+spring.mvc:
+  servlet:
+    path: /city-club/customer-data/v1/
+spring:
+  cloud:
+    openfeign:
+      okhttp:
+        enabled: true
+  banner:
+    location: banner.txt
+  profiles:
+    active:  ${cityclub-deployment-profile}
+  application:
+    name: customer-service
+monitor:
+  #host: http://localhost
+  host: http://otel-collector
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,prometheus
+  otlp:
+    metrics:
+      export:
+        url: ${monitor.host}:4318/v1/metrics
+        step: 10s
+    tracing:
+      endpoint: ${monitor.host}:4318/v1/traces
+  tracing:
+    sampling:
+      probability: 1.0
+  traces:
+    exporter: otlp
+  exporter:
+    otlp:
+      endpoint: ${monitor.host}:4318/v1/traces
